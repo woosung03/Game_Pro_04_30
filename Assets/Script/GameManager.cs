@@ -19,6 +19,21 @@ public class GameManager : MonoBehaviour
 
     public Button buttonPrice; //클릭 당 단가 업그레이드 버튼
 
+    public int employeeCount; //직원 래밸
+    public Text textRecruit; //직원 래밸 UI
+
+    public Button buttonRecruit; //직원 고용 버튼
+
+    public int width; //가로 최대 직원 수
+        public float space; //직원 간격
+    public GameObject Coin_Auto; //직원 프리팹
+
+    public Text textCoin_Auto; //직원 단가 UI
+
+    public float spaceFloor; //직원 간격
+       public int floorCapacity; //직원 최대 수
+       public int currentFloor; //현재 층 수
+       public GameObject PrefabFloor; //층 프리팹
     void Start()
     {
         
@@ -30,6 +45,8 @@ public class GameManager : MonoBehaviour
         ShowInfo(); //돈 표시 함수 호출
         MoneyIncrease(); //돈 증가 함수 호출
         ButtonActiveCheck(); //버튼 활성화 체크 함수 호출
+        UpdatePanelText(); //업그레이드 가격 UI 업데이트 함수 호출
+        CreateFloor(); //층 생성 함수 호출
     }
 
     void MoneyIncrease()
@@ -51,7 +68,10 @@ public class GameManager : MonoBehaviour
             textMoney.text = "0원";  //돈이 0일 때
         else
             textMoney.text = money.ToString("###,###") + "원"; //돈을 천 단위로 끊어서 표시
-
+        if(employeeCount == 0)
+            textCoin_Auto.text = "0명"; //직원 단가가 0일 때
+        else
+            textCoin_Auto.text = employeeCount + "명"; //직원 단가 표시
     }
 
     void UpdatePanelText()
@@ -83,6 +103,66 @@ public class GameManager : MonoBehaviour
         else
         {
             buttonPrice.interactable = false; //버튼 비활성화
+        }
+    }
+
+    void UpdateRecruitPanelText() //직원 단가   업데이트
+    {
+        textRecruit.text = "Lv." + employeeCount + " 직원 고용 \n\n";
+        textRecruit.text += "직원 1초 당 단가>\n";
+        textRecruit.text += AutoWork.autoMoneyIncreaseAmount.ToString("###,###") + "원\n";
+        textRecruit.text += "업그레이드 가격>\n";
+        textRecruit.text += AutoWork.autoMoneyIncreaseAmount.ToString("###,###") + "원\n";
+    }
+
+    void ButtonRecruitActiveCheck() // 직원 고용 활성화 버튼
+    {
+        if (money >= AutoWork.autoIncreasePrice) //돈이 업그레이드 가격보다 많을 때
+        {
+            buttonRecruit.interactable = true; //버튼 활성화
+        }
+        else
+        {
+            buttonRecruit.interactable = false; //버튼 비활성화
+        }
+    }
+
+    void CreateEmployee()
+    {
+        Vector2 boosSpot = GameObject.Find("Boss").transform.position; //보스 위치
+        float spotX = boosSpot.x + (employeeCount % width) * space; //직원 위치 X 좌표    
+        float spotY = boosSpot.y - (employeeCount / width) * space; //직원 위치 Y 좌표
+
+        Instantiate(Coin_Auto, new Vector2(spotX, spotY), Quaternion.identity); //직원 프리팹 생성
+    }
+
+    public void Recruit()
+    {
+        if (money >= AutoWork.autoIncreasePrice) //돈이 업그레이드 가격보다 많을 때
+        {
+            money -= AutoWork.autoIncreasePrice; //돈 차감
+            employeeCount += 1; //직원 수 증가
+            AutoWork.autoMoneyIncreaseAmount += moenyIncreaseLevel * 10; //직원 단가 증가
+            AutoWork.autoIncreasePrice += employeeCount * 500; //업그레이드 가격 증가
+            CreateEmployee(); //직원 생성 함수 호출
+        }
+    }
+
+    void CreateFloor()
+    {
+        Vector2 bgPosition = GameObject.Find("Background").transform.position; //배경 위치
+
+        float nextFloor = (employeeCount + 1) / floorCapacity; //다음 층 수
+
+        float spotX = bgPosition.x; //층 위치 X 좌표
+        float spotY = bgPosition.y; //층 위치 Y 좌표
+
+        spotY -= nextFloor * spaceFloor; //층 위치 Y 좌표
+
+        if(nextFloor >= currentFloor) //다음 층 수가 현재 층 수보다 많을 때
+        {
+            Instantiate(PrefabFloor, new Vector2(spotX, spotY), Quaternion.identity); //층 프리팹 생성
+            currentFloor += 1; //현재 층 수 증가
         }
     }
 }
