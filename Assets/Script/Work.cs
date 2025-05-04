@@ -14,8 +14,8 @@ public class Work : MonoBehaviour
     void Update()
     {
         if(Input.GetMouseButtonDown(0)) //마우스 좌클
-        {
-            if (UnityEngine.EventSystems.EventSystem.current.IsPointerOverGameObject() == false)    //
+        {   // 클릭한 대상이 UI가 아닌경우
+            if (UnityEngine.EventSystems.EventSystem.current.IsPointerOverGameObject() == false)    
             {
                 anim.SetTrigger("Click"); //  마우스 좌클 클릭시 애니메이션 실행
             } 
