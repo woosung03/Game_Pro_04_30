@@ -116,12 +116,12 @@ TextureImporter:
       name: pixil-layer-1_0
       rect:
         serializedVersion: 2
-        x: 159
+        x: 143
         y: 175
-        width: 146
+        width: 178
         height: 178
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -138,7 +138,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: fc6ef14bfc1355341b36451a6ebf0830
     internalID: 0
     vertices: []
     indices: 
@@ -147,7 +147,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      pixil-layer-1_0: 571745360846737319
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
