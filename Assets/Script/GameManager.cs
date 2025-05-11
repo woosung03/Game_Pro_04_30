@@ -19,6 +19,12 @@ public class GameManager : MonoBehaviour
 
     public Button buttonPrice; //클릭 당 단가 업그레이드 버튼
 
+    public long moenyIncreaseLevel_Middle = 0; //클릭 당 단가 업그레이드 중간 레벨 /05.11
+    public long moneyIncreasePrice_Middle; //클릭 당 단가 업그레이드 중간 가격
+    public Text Text_Price_Middle; //클릭 당 단가 업그레이드 중간 가격 UI
+
+    public Button buttonPrice_Middle; //클릭 당 단가 업그레이드 중간 버튼
+
     public int employeeCount; //직원 래밸
     public Text textRecruit; //직원 래밸 UI
 
@@ -81,6 +87,12 @@ public class GameManager : MonoBehaviour
         textPrice.text += moneyIncreaseAmount.ToString("###,###") + "원\n";
         textPrice.text += "업그레이드 가격>\n";
         textPrice.text += moneyIncreasePrice.ToString("###,###") + "원\n";
+
+        Text_Price_Middle.text = "Lv." + moenyIncreaseLevel_Middle + " 중급 단가 상승\n\n";
+        Text_Price_Middle.text += "외주 당 단가>\n";
+        Text_Price_Middle.text += moneyIncreaseAmount.ToString("###,###") + "원\n";
+        Text_Price_Middle.text += "업그레이드 가격>\n";
+        Text_Price_Middle.text += moneyIncreasePrice_Middle.ToString("###,###") + "원\n";
     }
 
     public void UpgradePrice()
@@ -94,6 +106,17 @@ public class GameManager : MonoBehaviour
         }      
     }
 
+    public void UpgradePrice_Middle()
+    {
+        if (money >= moneyIncreasePrice_Middle) //돈이 업그레이드 가격보다 많을 때
+        {
+            money -= moneyIncreasePrice_Middle; //돈 차감
+            moenyIncreaseLevel_Middle += 1; //업그레이드 레벨 증가
+            moneyIncreaseAmount += moenyIncreaseLevel_Middle * 10000; //단가 증rk           
+            moneyIncreasePrice_Middle += moenyIncreaseLevel_Middle * 100000; //업그레이드 가격 증가
+        }
+    }
+
     void ButtonActiveCheck()
     {
         if (money >= moneyIncreasePrice) //돈이 업그레이드 가격보다 많을 때
@@ -103,6 +126,15 @@ public class GameManager : MonoBehaviour
         else
         {
             buttonPrice.interactable = false; //버튼 비활성화
+        }
+
+        if(money >= moneyIncreasePrice_Middle) //돈이 업그레이드 가격보다 많을 때
+        {
+            buttonPrice_Middle.interactable = true; //버튼 활성화
+        }
+        else
+        {
+            buttonPrice_Middle.interactable = false; //버튼 비활성화
         }
     }
 
