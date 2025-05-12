@@ -51,8 +51,10 @@ public class GameManager : MonoBehaviour
         ShowInfo(); //돈 표시 함수 호출
         MoneyIncrease(); //돈 증가 함수 호출
         ButtonActiveCheck(); //버튼 활성화 체크 함수 호출
+        ButtonRecruitActiveCheck(); //직원 고용 버튼 활성화 체크 함수 호출
         UpdatePanelText(); //업그레이드 가격 UI 업데이트 함수 호출
         CreateFloor(); //층 생성 함수 호출
+        UpdateRecruitPanelText(); // 고용 UI 업데이트
     }
 
     void MoneyIncrease()
@@ -137,6 +139,7 @@ public class GameManager : MonoBehaviour
             buttonPrice_Middle.interactable = false; //버튼 비활성화
         }
     }
+
 
     void UpdateRecruitPanelText() //직원 단가   업데이트
     {
