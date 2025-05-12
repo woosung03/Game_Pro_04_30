@@ -129,14 +129,16 @@ public class GameManager : MonoBehaviour
         {
             buttonPrice.interactable = false; //버튼 비활성화
         }
-
-        if(money >= moneyIncreasePrice_Middle) //돈이 업그레이드 가격보다 많을 때
+        if (buttonPrice_Middle != null && buttonPrice_Middle.gameObject.activeInHierarchy)
         {
-            buttonPrice_Middle.interactable = true; //버튼 활성화
-        }
-        else
-        {
-            buttonPrice_Middle.interactable = false; //버튼 비활성화
+            if (money >= moneyIncreasePrice_Middle) //돈이 업그레이드 가격보다 많을 때
+            {
+                buttonPrice_Middle.interactable = true; //버튼 활성화
+            }
+            else
+            {
+                buttonPrice_Middle.interactable = false; //버튼 비활성화
+            }
         }
     }
 
