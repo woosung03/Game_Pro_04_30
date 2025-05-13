@@ -52,7 +52,7 @@ public class GameManager : MonoBehaviour
         MoneyIncrease(); //돈 증가 함수 호출
         ButtonActiveCheck(); //버튼 활성화 체크 함수 호출
         ButtonRecruitActiveCheck(); //직원 고용 버튼 활성화 체크 함수 호출
-        UpdatePanelText(); //업그레이드 가격 UI 업데이트 함수 호출
+        /*UpdatePanelText(); //업그레이드 가격 UI 업데이트 함수 호출*/
         CreateFloor(); //층 생성 함수 호출
         UpdateRecruitPanelText(); // 고용 UI 업데이트
     }
@@ -82,7 +82,7 @@ public class GameManager : MonoBehaviour
             textCoin_Auto.text = employeeCount + "명"; //직원 단가 표시
     }
 
-    void UpdatePanelText()
+    /*void UpdatePanelText()
     {
         textPrice.text = "Lv." + moenyIncreaseLevel + " 단가 상승 \n\n";
         textPrice.text += "외주 당 단가>\n";
@@ -95,7 +95,7 @@ public class GameManager : MonoBehaviour
         Text_Price_Middle.text += moneyIncreaseAmount.ToString("###,###") + "원\n";
         Text_Price_Middle.text += "업그레이드 가격>\n";
         Text_Price_Middle.text += moneyIncreasePrice_Middle.ToString("###,###") + "원\n";
-    }
+    }*/
 
     public void UpgradePrice()
     {

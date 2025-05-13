@@ -1194,12 +1194,12 @@ MonoBehaviour:
   moneyIncreasePrice: 100
   textPrice: {fileID: 0}
   buttonPrice: {fileID: 1454543624}
-  moenyIncreaseLevel_Middle: 0
-  moneyIncreasePrice_Middle: 0
+  moenyIncreaseLevel_Middle: 1
+  moneyIncreasePrice_Middle: 1
   Text_Price_Middle: {fileID: 0}
   buttonPrice_Middle: {fileID: 0}
   employeeCount: 1
-  textRecruit: {fileID: 1526924065}
+  textRecruit: {fileID: 1711005594}
   buttonRecruit: {fileID: 439796231}
   width: 3
   space: 2
